@@ -8,7 +8,7 @@ export const UnfavoriteButton = ({
 }: {
   disabled: boolean;
   onClick: () => void;
-}) => (
+  }) => (
   <img
     src={Icons.Heart}
     alt=""
