@@ -1,9 +1,17 @@
 // you can use `ReactNode` to add a type to the children prop
-import { Component, ReactNode } from "react";
+import { Component } from "react";
 import { Link } from "react-router-dom";
 
-export class ClassSection extends Component {
+import type { SectionLayoutProps } from "../types";
+
+export class ClassSection extends Component<SectionLayoutProps, Record<string, never>> {
+
   render() {
+
+    const {children, favsAndUnfavsCountArr, handleActiveSelector, activeSelector} = this.props;
+
+    const favAndUnfavNums = favsAndUnfavsCountArr();
+
     return (
       <section id="main-section">
         <div className="container-header">
@@ -15,20 +23,28 @@ export class ClassSection extends Component {
 
           <div className="selectors">
             {/* This should display the favorited count */}
-            <div className={`selector`} onClick={() => {}}>
-              favorited ( 0 )
+            <div className={`selector ${activeSelector === 'favorited' ? 'active': ''}`} onClick={() => {
+              handleActiveSelector('favorited')
+            }}>
+              Favorited ({favAndUnfavNums[0]})
             </div>
 
             {/* This should display the unfavorited count */}
-            <div className={`selector`} onClick={() => {}}>
-              unfavorited ( 0 )
+            <div className={`selector ${activeSelector === 'unfavorited' ? 'active': ''}`} onClick={() => {
+              handleActiveSelector('unfavorited')
+              }}>
+              Unfavorited ({favAndUnfavNums[1]})
             </div>
-            <div className={`selector active`} onClick={() => {}}>
+
+            <div className={`selector ${activeSelector === 'CreateDog' ? 'active': ''}`} onClick={() => {
+              handleActiveSelector('CreateDog')
+            }}>
               create dog
             </div>
           </div>
         </div>
-        <div className="content-container"></div>
+
+        <div className="content-container">{children}</div>
       </section>
     );
   }

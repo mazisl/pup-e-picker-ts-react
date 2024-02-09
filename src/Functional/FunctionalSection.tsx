@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Dog } from "../types";
 import type { SectionLayoutProps } from "../types";
 
-export const FunctionalSection = ({children, favsAndUnfavsCountArr, allDogs, setCurrentView, activeSelector, setActiveSelector}: SectionLayoutProps) => {
+export const FunctionalSection = ({children, favsAndUnfavsCountArr, handleActiveSelector, activeSelector}: SectionLayoutProps) => {
 
   const favAndUnfavNums = favsAndUnfavsCountArr();
 
@@ -17,25 +17,25 @@ export const FunctionalSection = ({children, favsAndUnfavsCountArr, allDogs, set
         </Link>
         <div className="selectors">
           {/* This should display the favorited count */}
-          <div className={`selector ${activeSelector === 'Favorited' ? 'active' : ''}`} onClick={() => {
-            setActiveSelector('Favorited')
-            const favDogs = allDogs.filter((dog) => dog.isFavorite === true);
-            setCurrentView(favDogs);
+          <div className={`selector ${activeSelector === 'favorited' ? 'active' : ''}`} onClick={() => {
+            handleActiveSelector('favorited')
+            // const favDogs = allDogs.filter((dog) => dog.isFavorite === true);
+            // setCurrentView(favDogs);
           }}>
             Favorited ({favAndUnfavNums[0]})
           </div>
 
           {/* This should display the unfavorited count */}
-          <div className={`selector ${activeSelector === 'Unfavorited' ? 'active' : ''}`} onClick={() => {
-            setActiveSelector('Unfavorited')
-            const unfavDogs = allDogs.filter((dog) => dog.isFavorite === false);
-            setCurrentView(unfavDogs);
+          <div className={`selector ${activeSelector === 'unfavorited' ? 'active' : ''}`} onClick={() => {
+            handleActiveSelector('unfavorited')
+            // const unfavDogs = allDogs.filter((dog) => dog.isFavorite === false);
+            // setCurrentView(unfavDogs);
           }}>
             Unfavorited ({favAndUnfavNums[1]})
           </div>
           
           <div className={`selector ${activeSelector === 'CreateDog' ? 'active' : ''}`} onClick={() => {
-            setActiveSelector('CreateDog')
+            handleActiveSelector('CreateDog')
           }}>
             Create Dog
           </div>

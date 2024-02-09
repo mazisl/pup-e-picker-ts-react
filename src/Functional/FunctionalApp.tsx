@@ -13,10 +13,7 @@ export function FunctionalApp() {
   const [allDogs, setAllDogs] = useState<Dog[]>([]);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [currentView, setCurrentView] = useState<Dog[]>(allDogs);
-  const [activeSelector, setActiveSelector] = useState<string>('');
-
-  console.log(activeSelector);
+  const [activeSelector, setActiveSelector] = useState<string>('all');
 
   //this func fetches dogs from db and updates state of allDogs with the fetched dogs array
   const refetchDogs = () => {
@@ -31,10 +28,21 @@ export function FunctionalApp() {
     refetchDogs();
   }, [])
 
-  useEffect(() => {
-    const allDogsCopy = allDogs.map((dog) => dog);
-    setCurrentView(allDogsCopy);
-  }, [allDogs])
+  const favoriteDogList = allDogs.filter((dog) => dog.isFavorite);
+  const notFavoriteDogList = allDogs.filter((dog) => !dog.isFavorite);
+
+  const dogList = {
+    'all': allDogs,
+    'favorited': favoriteDogList,
+    'unfavorited': notFavoriteDogList
+  }
+
+  //this func changes activeSelector state and displays the list of dogs as per active selector
+  //if a tab is already active and displaying it's list, clicking that tab again will remove it's active status and the full list of dogs will be displayed
+  const handleActiveChange = (state: string) => {
+    const newSelector = activeSelector === state ? 'all' : state;
+    setActiveSelector(newSelector);
+  }
 
   //this func creates new dog in db, fetches all the dogs from db and updates state of allDogs
   const createDog = (dog: Omit<Dog, 'id'>) => {
@@ -93,10 +101,10 @@ export function FunctionalApp() {
         <h1>pup-e-picker (Functional)</h1>
       </header>
       
-      <FunctionalSection favsAndUnfavsCountArr={favsAndUnfavsCountArr} allDogs={allDogs} setCurrentView={setCurrentView} activeSelector={activeSelector} setActiveSelector={setActiveSelector}>
+      <FunctionalSection favsAndUnfavsCountArr={favsAndUnfavsCountArr} handleActiveSelector={handleActiveChange} activeSelector={activeSelector}>
 
-        {activeSelector === '' || activeSelector === 'Favorited' || activeSelector === 'Unfavorited' ? (
-          <FunctionalDogs displayDogs={currentView} isLoading={isLoading} onTrashIconClick={onTrashIconClick} handleHeartClick={handleHeartClick} />
+        {activeSelector === 'all' || activeSelector === 'favorited' || activeSelector === 'unfavorited' ? (
+          <FunctionalDogs displayDogs={dogList[activeSelector]} isLoading={isLoading} onTrashIconClick={onTrashIconClick} handleHeartClick={handleHeartClick} />
         ) : (
           <FunctionalCreateDogForm createDog={createDog} isLoading={isLoading} isFavorite={isFavorite} />
         )}

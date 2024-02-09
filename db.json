@@ -1,109 +1,144 @@
 {
   "dogs": [
     {
-      "name": "Hunter",
+      "name": "Claire",
+      "image": "/assets/blue-heeler.png",
+      "description": "foolishly complex yahoo about guarantee",
+      "isFavorite": true,
+      "id": 0
+    },
+    {
+      "name": "Shanna",
+      "image": "/assets/dalmation.png",
+      "description": "than before wry ashamed coaxingly duh where mRNA",
+      "isFavorite": true,
+      "id": 1
+    },
+    {
+      "name": "Ruthie",
       "image": "/assets/cowardly.png",
-      "description": "whether jovial although hoard into",
+      "description": "via doubtfully wherever delight knobby",
+      "isFavorite": true,
+      "id": 2
+    },
+    {
+      "name": "Larissa",
+      "image": "/assets/cowardly.png",
+      "description": "yum automaton whoa expostulate reach brr original call",
       "isFavorite": false,
+      "id": 3
+    },
+    {
+      "name": "Janie",
+      "image": "/assets/chihuahua.avif",
+      "description": "ouch guilty normal if astride ride overheard",
+      "isFavorite": false,
+      "id": 4
+    },
+    {
+      "name": "Jennings",
+      "image": "/assets/corgi.png",
+      "description": "gadzooks interchange save meanwhile too",
+      "isFavorite": false,
+      "id": 5
+    },
+    {
+      "name": "Clovis",
+      "image": "/assets/cowardly.png",
+      "description": "athwart grudge thoughtful once whoa",
+      "isFavorite": true,
       "id": 6
     },
     {
-      "name": "Mercedes",
-      "image": "/assets/blue-heeler.png",
-      "description": "ha however geez upright absent eagle bouncy machine",
-      "isFavorite": true,
+      "name": "Tiara",
+      "image": "/assets/boxer.png",
+      "description": "times sack upon mozzarella into cylindrical physical short",
+      "isFavorite": false,
+      "id": 7
+    },
+    {
+      "name": "Ashlee",
+      "image": "/assets/boxer.png",
+      "description": "matrix pro unlike wherever svelte",
+      "isFavorite": false,
       "id": 8
     },
     {
-      "name": "Esta",
+      "name": "Forest",
+      "image": "/assets/boxer.png",
+      "description": "excitedly sans renounce lumbering scarcely next blaring",
+      "isFavorite": true,
+      "id": 9
+    },
+    {
+      "name": "Logan",
       "image": "/assets/corgi.png",
-      "description": "blah unexpectedly complicated unless towards tattoo quaintly",
+      "description": "atop before yahoo frenetically into fire fake",
       "isFavorite": true,
       "id": 10
     },
     {
-      "name": "Elna",
-      "image": "/assets/dalmation.png",
-      "description": "cash for under simplistic cocoon queasily alluvium",
-      "isFavorite": false,
+      "name": "Marilie",
+      "image": "/assets/blue-heeler.png",
+      "description": "than gestate schnitzel gah stepping-stone over knowledgeable gosh",
+      "isFavorite": true,
       "id": 11
     },
     {
-      "name": "Jasen",
-      "image": "/assets/blue-heeler.png",
-      "description": "unabashedly daydream stow heavily schematise woot burble",
+      "name": "Antonette",
+      "image": "/assets/boxer.png",
+      "description": "torso supposing wisely brr sidestep",
       "isFavorite": true,
       "id": 12
     },
     {
-      "name": "Adam",
+      "name": "Lyric",
       "image": "/assets/dalmation.png",
-      "description": "through above infinite scarce save lentil dynamo",
-      "isFavorite": false,
+      "description": "since ha exhausted bitterly yahoo because since overhang",
+      "isFavorite": true,
       "id": 13
     },
     {
-      "name": "Edythe",
-      "image": "/assets/corgi.png",
-      "description": "er aha forearm moist light",
+      "name": "Willa",
+      "image": "/assets/chihuahua.avif",
+      "description": "dromedary since once utterly ew boo about",
       "isFavorite": false,
+      "id": 14
+    },
+    {
+      "name": "Keyon",
+      "image": "/assets/corgi.png",
+      "description": "unless antennae silver accouter times frenetically oof palpitate",
+      "isFavorite": true,
       "id": 15
     },
     {
-      "name": "Anjali",
+      "name": "Alvah",
       "image": "/assets/corgi.png",
-      "description": "gram about lest core resect aha enforce intently",
+      "description": "barring adventurously flustered whoa script subdued ouch",
       "isFavorite": false,
       "id": 16
     },
     {
-      "name": "Armani",
+      "name": "Fay",
       "image": "/assets/chihuahua.avif",
-      "description": "amid once serious knottily computerize once harrumph whoa",
+      "description": "enroll yet hmph lively pfft awkwardly above hm",
       "isFavorite": true,
+      "id": 17
+    },
+    {
+      "name": "Cora",
+      "image": "/assets/cowardly.png",
+      "description": "versus meh optimal cough tether buffer crusade",
+      "isFavorite": false,
       "id": 18
     },
     {
-      "name": "Maritov",
-      "image": "/assets/blue-heeler.png",
-      "description": "This is the last try!",
-      "isFavorite": false,
-      "id": 20
-    },
-    {
-      "name": "Janitov",
-      "image": "/assets/blue-heeler.png",
-      "description": "This is another attempt to confirm!",
-      "isFavorite": false,
-      "id": 21
-    },
-    {
-      "name": "Gucci",
-      "image": "/assets/chihuahua.avif",
-      "description": "I am a branded dog loved by women",
+      "name": "Myrtie",
+      "image": "/assets/cowardly.png",
+      "description": "safely ringed along neuron viability winding weepy",
       "isFavorite": true,
-      "id": 24
-    },
-    {
-      "name": "Willy",
-      "image": "/assets/dalmation.png",
-      "description": "Willy is the cool boy in town!",
-      "isFavorite": true,
-      "id": 25
-    },
-    {
-      "name": "Billy",
-      "image": "/assets/corgi.png",
-      "description": "Now this one's a real cuty!",
-      "isFavorite": true,
-      "id": 26
-    },
-    {
-      "name": "Dorothy",
-      "image": "/assets/boxer.jpeg",
-      "description": "Let's see how this behaves!",
-      "isFavorite": true,
-      "id": 27
+      "id": 19
     }
   ]
 }
