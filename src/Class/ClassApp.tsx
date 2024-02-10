@@ -19,10 +19,6 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
     activeSelector: 'all'
   }
 
-  componentDidMount() {
-    this.refetchDogs();  
-  }
-
   //this func fetches dogs from db and updates state of allDogs with the fetched dogs array
   refetchDogs = () => {
     this.setState({
@@ -69,8 +65,9 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
   //if a tab is already active and displaying it's list, clicking that tab again will remove it's active status and the full list of dogs will be displayed
   handleActiveChange = (state: string) => {
     const newSelector = this.state.activeSelector === state ? 'all' : state;
-    this.setState(() => {
-      return {activeSelector: newSelector}
+    this.setState({
+      ...this.state,
+      activeSelector: newSelector
     })
   }
 
@@ -92,33 +89,43 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
   }
 
   onTrashIconClick = (dog: Dog) => {
-    this.setState(() => {
-      return {isLoading: true}
+    this.setState({
+      ...this.state,
+      isLoading: true
     })
     Requests.deleteDog(dog).then(() => this.refetchDogs())
-      .finally(() => this.setState(() => {
-        return {isLoading: false}
+      .finally(() => this.setState({
+        ...this.state,
+        isLoading: false
       }))
   }
 
   handleHeartClick = (dog: Dog, isFavorite: boolean) => {
-    this.setState(() => {
-      return {isLoading: true}
+    this.setState({
+      ...this.state,
+      isLoading: true
     });
+
     const dogCopy = { ...dog, isFavorite };
 
     Requests.updateDog(dogCopy)
       .then(() => {
-        this.setState(() => {
-         return {isFavorite}
+        this.setState({
+          ...this.state,
+          isFavorite
         })
         return dog.isFavorite;
       })
       .then(() => this.refetchDogs())
-      .finally(() => this.setState(() => {
-       return {isLoading: false}
+      .finally(() => this.setState({
+        ...this.state,
+        isLoading: false
       }));
   };
+
+  componentDidMount() {
+    this.refetchDogs();  
+  }
   
   render() {
 

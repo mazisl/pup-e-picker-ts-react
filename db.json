@@ -88,7 +88,7 @@
       "name": "Antonette",
       "image": "/assets/boxer.png",
       "description": "torso supposing wisely brr sidestep",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 12
     },
     {
