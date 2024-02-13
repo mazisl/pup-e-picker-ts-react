@@ -6,12 +6,16 @@ import { UnfavoriteButton } from "./UnfavoriteButton";
 import type { Dog } from "../types";
 
 // ! Do Not Make Changes To This File
-export const DogCard = ({dog, trashClickHandler, handleHeartClick, isLoading}: DogCardProps) => {
-
+export const DogCard = ({
+  dog,
+  trashClickHandler,
+  handleHeartClick,
+  isLoading,
+}: DogCardProps) => {
   const onEmptyHeartClick = (dog: Dog) => {
     handleHeartClick(dog, true);
   };
-  
+
   const onHeartClick = (dog: Dog) => {
     handleHeartClick(dog, false);
   };
@@ -58,13 +62,13 @@ export const DogCard = ({dog, trashClickHandler, handleHeartClick, isLoading}: D
       {/* Try making className "unfavorite-overlay active"*/}
       <div className="unfavorite-overlay">{"</3"}</div>
 
-      {/* A Dogs Name */}
+      {/* A Dog Name */}
       <p className="dog-name">{dog.name}</p>
 
-      {/* A Dogs Image */}
+      {/* A Dog Image */}
       <img src={dog.image} alt={dog.name} />
 
-      {/*  A Dogs description*/}
+      {/*  A Dog description*/}
       <p className="dog-description">{dog.description}</p>
     </div>
   );

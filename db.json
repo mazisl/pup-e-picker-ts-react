@@ -4,35 +4,21 @@
       "name": "Claire",
       "image": "/assets/blue-heeler.png",
       "description": "foolishly complex yahoo about guarantee",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 0
-    },
-    {
-      "name": "Shanna",
-      "image": "/assets/dalmation.png",
-      "description": "than before wry ashamed coaxingly duh where mRNA",
-      "isFavorite": true,
-      "id": 1
     },
     {
       "name": "Ruthie",
       "image": "/assets/cowardly.png",
       "description": "via doubtfully wherever delight knobby",
-      "isFavorite": true,
-      "id": 2
-    },
-    {
-      "name": "Larissa",
-      "image": "/assets/cowardly.png",
-      "description": "yum automaton whoa expostulate reach brr original call",
       "isFavorite": false,
-      "id": 3
+      "id": 2
     },
     {
       "name": "Janie",
       "image": "/assets/chihuahua.avif",
       "description": "ouch guilty normal if astride ride overheard",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 4
     },
     {
@@ -46,7 +32,7 @@
       "name": "Clovis",
       "image": "/assets/cowardly.png",
       "description": "athwart grudge thoughtful once whoa",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 6
     },
     {
@@ -127,18 +113,60 @@
       "id": 17
     },
     {
-      "name": "Cora",
-      "image": "/assets/cowardly.png",
-      "description": "versus meh optimal cough tether buffer crusade",
-      "isFavorite": false,
-      "id": 18
-    },
-    {
       "name": "Myrtie",
       "image": "/assets/cowardly.png",
       "description": "safely ringed along neuron viability winding weepy",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 19
+    },
+    {
+      "name": "Mahir",
+      "image": "/assets/corgi.png",
+      "description": "This one's a real cuty!",
+      "isFavorite": true,
+      "id": 20
+    },
+    {
+      "name": "Changi",
+      "image": "/assets/boxer.jpeg",
+      "description": "This sounds like a singapore breed!",
+      "isFavorite": true,
+      "id": 23
+    },
+    {
+      "name": "Huanko",
+      "image": "/assets/blue-heeler.png",
+      "description": "Guess if fav or not!",
+      "isFavorite": true,
+      "id": 24
+    },
+    {
+      "name": "Rayhan",
+      "image": "/assets/boxer.jpeg",
+      "description": "See what it turns out to be!",
+      "isFavorite": false,
+      "id": 25
+    },
+    {
+      "name": "Halo",
+      "image": "/assets/blue-heeler.png",
+      "description": "Let's see this one now!",
+      "isFavorite": false,
+      "id": 26
+    },
+    {
+      "name": "Juan",
+      "image": "/assets/blue-heeler.png",
+      "description": "hahaha",
+      "isFavorite": true,
+      "id": 27
+    },
+    {
+      "name": "Shaun",
+      "image": "/assets/blue-heeler.png",
+      "description": "This has got the brawn!",
+      "isFavorite": true,
+      "id": 28
     }
   ]
 }
