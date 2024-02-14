@@ -8,12 +8,11 @@ export class ClassSection extends Component<SectionLayoutProps, Record<string, n
   render() {
     const {
       children,
-      favsAndUnfavsCountArr,
+      favoritesCount,
+      unfavoritesCount,
       handleActiveSelector,
       activeSelector,
     } = this.props;
-
-    const favAndUnfavNums = favsAndUnfavsCountArr();
 
     return (
       <section id="main-section">
@@ -34,7 +33,7 @@ export class ClassSection extends Component<SectionLayoutProps, Record<string, n
                 handleActiveSelector("favorited");
               }}
             >
-              Favorited ({favAndUnfavNums[0]})
+              Favorited ({favoritesCount})
             </div>
 
             {/* This should display the unfavorited count */}
@@ -46,15 +45,15 @@ export class ClassSection extends Component<SectionLayoutProps, Record<string, n
                 handleActiveSelector("unfavorited");
               }}
             >
-              Unfavorited ({favAndUnfavNums[1]})
+              Unfavorited ({unfavoritesCount})
             </div>
 
             <div
               className={`selector ${
-                activeSelector === "CreateDog" ? "active" : ""
+                activeSelector === "createDog" ? "active" : ""
               }`}
               onClick={() => {
-                handleActiveSelector("CreateDog");
+                handleActiveSelector("createDog");
               }}
             >
               Create Dog

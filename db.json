@@ -25,7 +25,7 @@
       "name": "Jennings",
       "image": "/assets/corgi.png",
       "description": "gadzooks interchange save meanwhile too",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 5
     },
     {
@@ -46,14 +46,14 @@
       "name": "Ashlee",
       "image": "/assets/boxer.png",
       "description": "matrix pro unlike wherever svelte",
-      "isFavorite": false,
+      "isFavorite": true,
       "id": 8
     },
     {
       "name": "Forest",
       "image": "/assets/boxer.png",
       "description": "excitedly sans renounce lumbering scarcely next blaring",
-      "isFavorite": true,
+      "isFavorite": false,
       "id": 9
     },
     {
@@ -155,18 +155,18 @@
       "id": 26
     },
     {
-      "name": "Juan",
-      "image": "/assets/blue-heeler.png",
-      "description": "hahaha",
-      "isFavorite": true,
-      "id": 27
-    },
-    {
       "name": "Shaun",
       "image": "/assets/blue-heeler.png",
       "description": "This has got the brawn!",
       "isFavorite": true,
       "id": 28
+    },
+    {
+      "name": "Buhaha",
+      "image": "/assets/blue-heeler.png",
+      "description": "This is a joke",
+      "isFavorite": false,
+      "id": 29
     }
   ]
 }

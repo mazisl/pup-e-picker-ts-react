@@ -4,11 +4,11 @@ import type { SectionLayoutProps } from "../types";
 
 export const FunctionalSection = ({
   children,
-  favsAndUnfavsCountArr,
+  favoritesCount,
+  unfavoritesCount,
   handleActiveSelector,
   activeSelector,
 }: SectionLayoutProps) => {
-  const favAndUnfavNums = favsAndUnfavsCountArr();
 
   return (
     <section id="main-section">
@@ -27,7 +27,7 @@ export const FunctionalSection = ({
               handleActiveSelector("favorited");
             }}
           >
-            Favorited ({favAndUnfavNums[0]})
+            Favorited ({favoritesCount})
           </div>
 
           {/* This should display the unfavorited count */}
@@ -39,15 +39,15 @@ export const FunctionalSection = ({
               handleActiveSelector("unfavorited");
             }}
           >
-            Unfavorited ({favAndUnfavNums[1]})
+            Unfavorited ({unfavoritesCount})
           </div>
 
           <div
             className={`selector ${
-              activeSelector === "CreateDog" ? "active" : ""
+              activeSelector === "createDog" ? "active" : ""
             }`}
             onClick={() => {
-              handleActiveSelector("CreateDog");
+              handleActiveSelector("createDog");
             }}
           >
             Create Dog

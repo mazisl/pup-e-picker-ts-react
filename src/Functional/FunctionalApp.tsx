@@ -6,20 +6,19 @@ import { FunctionalSection } from "./FunctionalSection";
 import toast from "react-hot-toast";
 
 import type { Dog } from "../types";
+import type { ActiveSelector } from "../types";
 import { Requests } from "../api";
 
 export function FunctionalApp() {
   const [allDogs, setAllDogs] = useState<Dog[]>([]);
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [activeSelector, setActiveSelector] = useState<string>("all");
+  const [activeSelector, setActiveSelector] = useState<ActiveSelector>("all");
 
   //this func fetches dogs from db and updates state of allDogs with the fetched dogs array
   const refetchDogs = () => {
     setIsLoading(true);
     return Requests.getAllDogs()
       .then((dogs) => setAllDogs(dogs))
-      .then(() => favsAndUnfavsCountArr())
       .finally(() => setIsLoading(false));
   };
 
@@ -38,7 +37,7 @@ export function FunctionalApp() {
 
   //this func changes activeSelector state and displays the list of dogs as per active selector
   //if a tab is already active and displaying it's list, clicking that tab again will remove it's active status and the full list of dogs will be displayed
-  const handleActiveChange = (state: string) => {
+  const handleActiveSelector = (state: ActiveSelector) => {
     const newSelector = activeSelector === state ? "all" : state;
     setActiveSelector(newSelector);
   };
@@ -68,31 +67,22 @@ export function FunctionalApp() {
 
     Requests.updateDog(dogCopy)
       .then(() => {
-        setIsFavorite(isFavorite);
         return dog.isFavorite;
       })
       .then(() => refetchDogs())
       .finally(() => setIsLoading(false));
   };
 
-  //this func displays the number of fav and unfav dogs on the fav and unfav tabs
-  //used inside refetchDogs function and FunctionalSection component
-  const favsAndUnfavsCountArr = () => {
-    const favCount = () => {
-      return allDogs.filter((dog) => {
+  //this obj displays the number of fav and unfav dogs on the fav and unfav tabs
+  //used inside FunctionalSection component
+  const counts = {
+    favs: allDogs.filter((dog) => {
         return dog.isFavorite === true;
-      });
-    };
+      }).length,
 
-    const unfavCount = () => {
-      return allDogs.filter((dog) => {
+    unfavs: allDogs.filter((dog) => {
         return dog.isFavorite === false;
-      });
-    };
-
-    let countArr = [];
-    countArr.push(favCount().length, unfavCount().length);
-    return countArr;
+      }).length
   };
 
   return (
@@ -102,24 +92,23 @@ export function FunctionalApp() {
       </header>
 
       <FunctionalSection
-        favsAndUnfavsCountArr={favsAndUnfavsCountArr}
-        handleActiveSelector={handleActiveChange}
+        favoritesCount={counts.favs}
+        unfavoritesCount={counts.unfavs}
+        handleActiveSelector={handleActiveSelector}
         activeSelector={activeSelector}
       >
-        {activeSelector === "all" ||
-        activeSelector === "favorited" ||
-        activeSelector === "unfavorited" ? (
+        {activeSelector === "createDog" ? (
+          <FunctionalCreateDogForm
+            createDog={createDog}
+            isLoading={isLoading}
+            isFavorite={false}
+          />
+        ) : (
           <FunctionalDogs
             displayDogs={dogList[activeSelector]}
             isLoading={isLoading}
             onTrashIconClick={onTrashIconClick}
             handleHeartClick={handleHeartClick}
-          />
-        ) : (
-          <FunctionalCreateDogForm
-            createDog={createDog}
-            isLoading={isLoading}
-            isFavorite={false}
           />
         )}
       </FunctionalSection>

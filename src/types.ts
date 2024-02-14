@@ -15,10 +15,13 @@ export interface DogCardProps {
   isLoading: boolean;
 }
 
+export type ActiveSelector = 'all' | 'favorited' | 'unfavorited' | 'createDog'; 
+
 export interface SectionLayoutProps {
   children: ReactNode;
-  favsAndUnfavsCountArr: () => number[];
-  handleActiveSelector: (state: string) => void;
+  favoritesCount: number;
+  unfavoritesCount: number;
+  handleActiveSelector: (state: ActiveSelector) => void;
   activeSelector: string;
 }
 
@@ -37,9 +40,8 @@ export interface CreateDogFormProps {
 
 export interface ClassAppState {
   allDogs: Dog[];
-  isFavorite: boolean;
   isLoading: boolean;
-  activeSelector: string;
+  activeSelector: ActiveSelector;
 }
 
 export interface ClassCreateDogFormState {
