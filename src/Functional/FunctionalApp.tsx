@@ -19,6 +19,7 @@ export function FunctionalApp() {
     setIsLoading(true);
     return Requests.getAllDogs()
       .then((dogs) => setAllDogs(dogs))
+      .catch(() => toast.error('Failed to refetch dogs!'))
       .finally(() => setIsLoading(false));
   };
 
@@ -45,19 +46,20 @@ export function FunctionalApp() {
   //this func creates new dog in db, fetches all the dogs from db and updates state of allDogs
   const createDog = (dog: Omit<Dog, "id">) => {
     setIsLoading(true);
-    Requests.postDog(dog).then(() => {
-      refetchDogs()
-        .then(() => {
-          toast.success("Thanks for creating a new dog! 😃");
-        })
-        .finally(() => setIsLoading(false));
-    });
+    return Requests.postDog(dog)
+      .then(() => refetchDogs())
+      .then(() => {
+        toast.success("Thanks for creating a new dog! 😃");
+      })
+      .catch(() => toast.error('Could not create new dog!'))
+      .finally(() => setIsLoading(false))
   };
 
   const onTrashIconClick = (dog: Dog) => {
     setIsLoading(true);
     Requests.deleteDog(dog)
       .then(() => refetchDogs())
+      .catch(() => toast.error('Could not delete dog!'))
       .finally(() => setIsLoading(false));
   };
 
@@ -70,19 +72,8 @@ export function FunctionalApp() {
         return dog.isFavorite;
       })
       .then(() => refetchDogs())
+      .catch(() => toast.error('Could not change favorite status!'))
       .finally(() => setIsLoading(false));
-  };
-
-  //this obj displays the number of fav and unfav dogs on the fav and unfav tabs
-  //used inside FunctionalSection component
-  const counts = {
-    favs: allDogs.filter((dog) => {
-        return dog.isFavorite === true;
-      }).length,
-
-    unfavs: allDogs.filter((dog) => {
-        return dog.isFavorite === false;
-      }).length
   };
 
   return (
@@ -92,8 +83,8 @@ export function FunctionalApp() {
       </header>
 
       <FunctionalSection
-        favoritesCount={counts.favs}
-        unfavoritesCount={counts.unfavs}
+        favoritesCount={favoriteDogList.length}
+        unfavoritesCount={notFavoriteDogList.length}
         handleActiveSelector={handleActiveSelector}
         activeSelector={activeSelector}
       >
@@ -101,7 +92,6 @@ export function FunctionalApp() {
           <FunctionalCreateDogForm
             createDog={createDog}
             isLoading={isLoading}
-            isFavorite={false}
           />
         ) : (
           <FunctionalDogs

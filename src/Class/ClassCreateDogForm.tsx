@@ -1,7 +1,12 @@
 import { Component } from "react";
 import { dogPictures } from "../dog-pictures";
 import type { CreateDogFormProps } from "../types";
-import type { ClassCreateDogFormState } from "../types";
+
+interface ClassCreateDogFormState {
+  nameInput: string;
+  descriptionInput: string;
+  dogImage: string;
+}
 
 // use this as your default selected image
 const defaultImage = dogPictures.BlueHeeler;
@@ -14,7 +19,7 @@ export class ClassCreateDogForm extends Component<CreateDogFormProps, ClassCreat
   };
 
   render() {
-    const { createDog, isLoading, isFavorite } = this.props;
+    const { createDog, isLoading } = this.props;
     const { nameInput, descriptionInput, dogImage } = this.state;
 
     return (
@@ -27,16 +32,17 @@ export class ClassCreateDogForm extends Component<CreateDogFormProps, ClassCreat
             name: nameInput,
             image: dogImage,
             description: descriptionInput,
-            isFavorite
-          });
-          this.setState(() => {
-            return { nameInput: "" };
-          });
-          this.setState(() => {
-            return { descriptionInput: "" };
-          });
-          this.setState(() => {
-            return { dogImage: defaultImage };
+            isFavorite: false
+          }).then(() => {
+            this.setState(() => {
+              return { nameInput: "" };
+            });
+            this.setState(() => {
+              return { descriptionInput: "" };
+            });
+            this.setState(() => {
+              return { dogImage: defaultImage };
+            });
           });
         }}
       >

@@ -33,19 +33,6 @@ export interface DogsProps {
 }
 
 export interface CreateDogFormProps {
-  createDog: (dog: Omit<Dog, 'id'>) => void;
+  createDog: (dog: Omit<Dog, 'id'>) => Promise<unknown>;
   isLoading: boolean;
-  isFavorite: boolean;
-}
-
-export interface ClassAppState {
-  allDogs: Dog[];
-  isLoading: boolean;
-  activeSelector: ActiveSelector;
-}
-
-export interface ClassCreateDogFormState {
-  nameInput: string;
-  descriptionInput: string;
-  dogImage: string;
 }

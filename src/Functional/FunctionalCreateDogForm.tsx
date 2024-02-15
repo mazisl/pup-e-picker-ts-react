@@ -7,8 +7,7 @@ const defaultImage = dogPictures.BlueHeeler;
 
 export const FunctionalCreateDogForm = ({
   createDog,
-  isLoading,
-  isFavorite,
+  isLoading
 }: CreateDogFormProps) => {
 
   const [nameInput, setNameInput] = useState<string>("");
@@ -25,11 +24,12 @@ export const FunctionalCreateDogForm = ({
           name: nameInput,
           image: dogImage,
           description: descriptionInput,
-          isFavorite
-        });
-        setNameInput("");
-        setDescriptionInput("");
-        setDogImage(defaultImage);
+          isFavorite: false
+        }).then(() => {
+          setNameInput("");
+          setDescriptionInput("");
+          setDogImage(defaultImage);
+        })
       }}
     >
       <h4>Create a New Dog</h4>

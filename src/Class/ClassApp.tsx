@@ -9,7 +9,11 @@ import type { Dog } from "../types";
 import type { ActiveSelector } from "../types";
 import { Requests } from "../api";
 
-import type { ClassAppState } from "../types";
+interface ClassAppState {
+  allDogs: Dog[];
+  isLoading: boolean;
+  activeSelector: ActiveSelector;
+}
 
 export class ClassApp extends Component<Record<never, never>, ClassAppState> {
   state: ClassAppState = {
@@ -33,6 +37,7 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
           allDogs: dogs,
         });
       })
+      .catch(() => toast.error('Failed to refetch dogs!'))
       .finally(() => {
         this.setState({
           isLoading: false,
@@ -56,17 +61,17 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
       ...this.state,
       isLoading: true,
     });
-    Requests.postDog(dog).then(() => {
-      this.refetchDogs()
-        .then(() => {
-          toast.success("Thanks for creating a new dog! 😃");
+    return Requests.postDog(dog)
+      .then(() => this.refetchDogs())
+      .then(() => {
+        toast.success("Thanks for creating a new dog! 😃");
+      })
+      .catch(() => toast.error('Could not create new dog!'))
+      .finally(() =>
+        this.setState({
+          isLoading: false,
         })
-        .finally(() =>
-          this.setState({
-            isLoading: false,
-          })
-        );
-    });
+      )
   };
 
   onTrashIconClick = (dog: Dog) => {
@@ -76,6 +81,7 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
     });
     Requests.deleteDog(dog)
       .then(() => this.refetchDogs())
+      .catch(() => toast.error('Could not delete dog!'))
       .finally(() =>
         this.setState({
           isLoading: false,
@@ -96,6 +102,7 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
         return dog.isFavorite;
       })
       .then(() => this.refetchDogs())
+      .catch(() => toast.error('Could not change favorite status!'))
       .finally(() =>
         this.setState({
           isLoading: false,
@@ -126,16 +133,6 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
       unfavorited: notFavoriteDogList,
     };
 
-    const counts = {
-      favs: allDogs.filter((dog) => {
-          return dog.isFavorite === true;
-        }).length,
-  
-      unfavs: allDogs.filter((dog) => {
-          return dog.isFavorite === false;
-        }).length
-    };
-
     return (
       <div className="App" style={{ backgroundColor: "goldenrod" }}>
         <header>
@@ -143,8 +140,8 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
         </header>
 
         <ClassSection
-          favoritesCount={counts.favs}
-          unfavoritesCount={counts.unfavs}
+          favoritesCount={favoriteDogList.length}
+          unfavoritesCount={notFavoriteDogList.length}
           handleActiveSelector={handleActiveSelector}
           activeSelector={activeSelector}
         >
@@ -152,7 +149,6 @@ export class ClassApp extends Component<Record<never, never>, ClassAppState> {
           <ClassCreateDogForm
             createDog={createDog}
             isLoading={isLoading}
-            isFavorite={false}
           />
         ) : (
           <ClassDogs

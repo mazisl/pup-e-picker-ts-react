@@ -167,6 +167,13 @@
       "description": "This is a joke",
       "isFavorite": false,
       "id": 29
+    },
+    {
+      "name": "Jackass",
+      "image": "/assets/blue-heeler.png",
+      "description": "Lets see if this works",
+      "isFavorite": false,
+      "id": 30
     }
   ]
 }

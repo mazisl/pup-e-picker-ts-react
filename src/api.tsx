@@ -4,7 +4,13 @@ export const baseUrl = "http://localhost:3000";
 
 export const Requests = {
   // should return a promise with all dogs in the database
-  getAllDogs: (): Promise<Dog[]> => fetch(`${baseUrl}/dogs`).then((response) => response.json()),
+  getAllDogs: (): Promise<Dog[]> => fetch(`${baseUrl}/dogs`).then((response) => {
+    if (!response.ok) {
+      throw new Error('Could not get dogs!')
+    }
+    return response;
+  })
+  .then((response) => response.json()),
 
   // should create a dog in the database from a partial dog object
   // and return a promise with the result
@@ -16,7 +22,13 @@ export const Requests = {
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => response.json());
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Could not post dog!')
+      }
+      return response;
+    })
+    .then((response) => response.json())
   },
 
   // should delete a dog from the database
@@ -37,6 +49,12 @@ export const Requests = {
       headers: {
         ['Content-Type']: 'application/json'
       },
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to update dog!')
+      }
+      return response;
     })
     .then((response) => response.json());
   }
