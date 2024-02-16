@@ -51,7 +51,6 @@ export function FunctionalApp() {
       .then(() => {
         toast.success("Thanks for creating a new dog! 😃");
       })
-      .catch(() => toast.error('Could not create new dog!'))
       .finally(() => setIsLoading(false))
   };
 

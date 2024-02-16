@@ -2,6 +2,8 @@ import { Component } from "react";
 import { dogPictures } from "../dog-pictures";
 import type { CreateDogFormProps } from "../types";
 
+import toast from "react-hot-toast";
+
 interface ClassCreateDogFormState {
   nameInput: string;
   descriptionInput: string;
@@ -43,7 +45,8 @@ export class ClassCreateDogForm extends Component<CreateDogFormProps, ClassCreat
             this.setState(() => {
               return { dogImage: defaultImage };
             });
-          });
+          })
+          .catch(() => toast.error('Could not create new dog!'))
         }}
       >
         <h4>Create a New Dog</h4>
